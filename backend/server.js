@@ -8,6 +8,7 @@ const { Schema, model } = mongoose;
 
 const app = express();
 app.use(cors());
+const port = 3000;
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -67,8 +68,8 @@ app.post('/upload', upload.single('file'), async (req, res) => {
 mongoose
   .connect(process.env.MONGO_DB_URL)
   .then(() => {
-    app.listen(3000, (req, res) => {
-      console.log('server started....');
+    app.listen(port, (req, res) => {
+      console.log(`server started by ${port}`);
     });
   })
   .catch((err) => {
